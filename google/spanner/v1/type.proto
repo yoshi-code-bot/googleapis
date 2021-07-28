@@ -40,6 +40,14 @@ message Type {
   // If [code][google.spanner.v1.Type.code] == [STRUCT][google.spanner.v1.TypeCode.STRUCT], then `struct_type`
   // provides type information for the struct's fields.
   StructType struct_type = 3;
+
+  // The [TypeAnnotationCode][] that disambiguates SQL type that Spanner will
+  // use to represent values of this type during query processing. This is
+  // necessary for some type codes because a single [TypeCode][] can be mapped
+  // to different SQL types depending on the SQL dialect. [type_annotation][]
+  // typically is not needed to process the content of a value (it doesn't
+  // affect serialization) and clients can ignore it on the read path.
+  TypeAnnotationCode type_annotation = 4;
 }
 
 // `StructType` defines the fields of a [STRUCT][google.spanner.v1.TypeCode.STRUCT] type.
@@ -137,4 +145,17 @@ enum TypeCode {
   // - Members of a JSON object are not guaranteed to have their order
   //   preserved. JSON array elements will have their order preserved.
   JSON = 11;
+}
+
+// `TypeAnnotationCode` is used as a part of [Type][google.spanner.v1.Type] to
+// disambiguate SQL types that should be used for a given Cloud Spanner value.
+// Disambiguation is needed because the same Cloud Spanner type can be mapped to
+// different SQL types depending on SQL dialect. TypeAnnotationCode doesn't
+// affect the way value is serialized.
+enum TypeAnnotationCode {
+  TYPE_ANNOTATION_CODE_UNSPECIFIED = 0;
+
+  INT32 = 1;
+
+  PG_NUMERIC = 2;
 }

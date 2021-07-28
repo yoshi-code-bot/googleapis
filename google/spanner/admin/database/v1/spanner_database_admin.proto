@@ -407,6 +407,9 @@ message Database {
   // database option set using DatabaseAdmin.CreateDatabase or
   // DatabaseAdmin.UpdateDatabaseDdl. If not explicitly set, this is empty.
   string default_leader = 9 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // The dialect of the Cloud Spanner Database.
+  DatabaseDialect database_dialect = 10 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
 // The request for [ListDatabases][google.spanner.admin.database.v1.DatabaseAdmin.ListDatabases].
@@ -469,6 +472,9 @@ message CreateDatabaseRequest {
   // specified, Cloud Spanner will encrypt/decrypt all data at rest using
   // Google default encryption.
   EncryptionConfig encryption_config = 4 [(google.api.field_behavior) = OPTIONAL];
+
+  // The dialect of the Cloud Spanner Database.
+  DatabaseDialect database_dialect = 5 [(google.api.field_behavior) = OUTPUT_ONLY];
 }
 
 // Metadata type for the operation returned by
