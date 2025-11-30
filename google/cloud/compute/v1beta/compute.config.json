@@ -1,14 +1,15 @@
 {
   "converterVersion": "",
-  "updateTime": "2025-11-05T08:32:48Z",
+  "updateTime": "2025-11-30T08:32:10Z",
   "apiVersion": "v1beta",
-  "discoveryRevision": "20251019",
+  "discoveryRevision": "20251110",
   "inlineSchemas": [
     {
-      "schema": "a870e510",
+      "schema": "bf96dbd3",
       "locations": {
         "Data": [
           "schemas.AutoscalerList.warning.data.data",
+          "schemas.RolloutPlansListResponse.warning.data.data",
           "schemas.ExternalVpnGatewayList.warning.data.data",
           "schemas.AddressAggregatedList.warning.data.data",
           "schemas.SubnetworkAggregatedList.warning.data.data",
@@ -152,11 +153,13 @@
           "schemas.ForwardingRuleAggregatedList.warning.data.data",
           "schemas.NodeTypeAggregatedList.warning.data.data",
           "schemas.InstanceGroupsScopedList.warning.data.data",
+          "schemas.RolloutsListResponse.warning.data.data",
           "schemas.ReservationBlocksListResponse.warning.data.data",
           "schemas.SslPoliciesList.warning.data.data",
           "schemas.RegionInstanceGroupManagersListInstanceConfigsResp.warning.data.data",
           "schemas.InstanceGroupManagerList.warning.data.data",
           "schemas.InstanceGroupManagersScopedList.warning.data.data",
+          "schemas.GlobalVmExtensionPolicyList.warning.data.data",
           "schemas.LicensesListResponse.warning.data.data",
           "schemas.NetworkEndpointGroupsScopedList.warning.data.data",
           "schemas.NetworkAttachmentList.warning.data.data",
@@ -225,7 +228,7 @@
       }
     },
     {
-      "schema": "3d2487ac",
+      "schema": "544a7e6f",
       "locations": {
         "Warning": [
           "schemas.StoragePoolTypeAggregatedList.warning",
@@ -272,6 +275,7 @@
           "schemas.SubnetworkList.warning",
           "schemas.DiskTypesScopedList.warning",
           "schemas.RoutersListBgpRoutes.warning",
+          "schemas.RolloutPlansListResponse.warning",
           "schemas.SnapshotsScopedList.warning",
           "schemas.TargetTcpProxyAggregatedList.warning",
           "schemas.HealthSourceList.warning",
@@ -390,6 +394,7 @@
           "schemas.TargetVpnGatewayList.warning",
           "schemas.InstanceListReferrers.warning",
           "schemas.NodeGroupsListNodes.warning",
+          "schemas.RolloutsListResponse.warning",
           "schemas.PublicDelegatedPrefixesScopedList.warning",
           "schemas.VmExtensionPoliciesScopedList.warning",
           "schemas.TargetHttpProxiesScopedList.warning",
@@ -427,6 +432,7 @@
           "schemas.RegionDiskTypeList.warning",
           "schemas.TargetTcpProxyList.warning",
           "schemas.NodeTypeAggregatedList.warning",
+          "schemas.GlobalVmExtensionPolicyList.warning",
           "schemas.InstanceGroupAggregatedList.warning",
           "schemas.DiskTypeList.warning",
           "schemas.RoutersListRoutePolicies.warning",
@@ -441,7 +447,7 @@
       }
     },
     {
-      "schema": "f16368b9",
+      "schema": "8895f7c",
       "locations": {
         "ErrorDetails": [
           "schemas.MultiMigStatusAcceleratorTopologyAcceleratorTopologyStateLastCheck.error.errors.errors.errorDetails.errorDetails",
@@ -454,7 +460,7 @@
       }
     },
     {
-      "schema": "20f3a5a2",
+      "schema": "38199c65",
       "locations": {
         "Errors": [
           "schemas.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error.errors.errors",
@@ -467,7 +473,7 @@
       }
     },
     {
-      "schema": "d07f370d",
+      "schema": "e7a52dd0",
       "locations": {
         "Error": [
           "schemas.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error",
@@ -479,7 +485,7 @@
       }
     },
     {
-      "schema": "fea73a91",
+      "schema": "15cd3154",
       "locations": {
         "Warnings": [
           "schemas.Operation.warnings.warnings",
@@ -505,7 +511,7 @@
       }
     },
     {
-      "schema": "17def5eb",
+      "schema": "2f04ecae",
       "locations": {
         "Accelerators": [
           "schemas.MachineType.accelerators.accelerators"
@@ -1145,7 +1151,7 @@
       }
     },
     {
-      "schema": "add2edf3",
+      "schema": "c4f8e4b6",
       "locations": {
         "Allowed": [
           "schemas.Firewall.allowed.allowed"
@@ -1285,6 +1291,14 @@
       "locations": {
         "CancelRegionInstanceGroupManagerResizeRequestRequest": [
           "resources.regionInstanceGroupManagerResizeRequests.cancel._request"
+        ]
+      }
+    },
+    {
+      "schema": "756fc7de",
+      "locations": {
+        "CancelRolloutRequest": [
+          "resources.rollouts.cancel._request"
         ]
       }
     },
@@ -1517,6 +1531,14 @@
       "locations": {
         "DeleteGlobalPublicDelegatedPrefixeRequest": [
           "resources.globalPublicDelegatedPrefixes.delete._request"
+        ]
+      }
+    },
+    {
+      "schema": "a491f30a",
+      "locations": {
+        "DeleteGlobalVmExtensionPolicyRequest": [
+          "resources.globalVmExtensionPolicies.delete._request"
         ]
       }
     },
@@ -2009,6 +2031,22 @@
       }
     },
     {
+      "schema": "d62db858",
+      "locations": {
+        "DeleteRolloutPlanRequest": [
+          "resources.rolloutPlans.delete._request"
+        ]
+      }
+    },
+    {
+      "schema": "775c1f0f",
+      "locations": {
+        "DeleteRolloutRequest": [
+          "resources.rollouts.delete._request"
+        ]
+      }
+    },
+    {
       "schema": "73afdb24",
       "locations": {
         "DeleteRoutePolicyRouterRequest": [
@@ -2225,7 +2263,7 @@
       }
     },
     {
-      "schema": "7dececa0",
+      "schema": "9512e363",
       "locations": {
         "Denied": [
           "schemas.Firewall.denied.denied"
@@ -3489,6 +3527,22 @@
       }
     },
     {
+      "schema": "21076687",
+      "locations": {
+        "GetRolloutPlanRequest": [
+          "resources.rolloutPlans.get._request"
+        ]
+      }
+    },
+    {
+      "schema": "61ae5330",
+      "locations": {
+        "GetRolloutRequest": [
+          "resources.rollouts.get._request"
+        ]
+      }
+    },
+    {
       "schema": "3f9c3def",
       "locations": {
         "GetRoutePolicyRouterRequest": [
@@ -3945,6 +3999,14 @@
       }
     },
     {
+      "schema": "ad9c3018",
+      "locations": {
+        "InsertGlobalVmExtensionPolicyRequest": [
+          "resources.globalVmExtensionPolicies.insert._request"
+        ]
+      }
+    },
+    {
       "schema": "25ae8ef8",
       "locations": {
         "InsertHealthCheckRequest": [
@@ -4377,6 +4439,14 @@
       }
     },
     {
+      "schema": "df37f566",
+      "locations": {
+        "InsertRolloutPlanRequest": [
+          "resources.rolloutPlans.insert._request"
+        ]
+      }
+    },
+    {
       "schema": "ec4972f5",
       "locations": {
         "InsertRouteRequest": [
@@ -4569,7 +4639,7 @@
       }
     },
     {
-      "schema": "2fb4c83a",
+      "schema": "46dabefd",
       "locations": {
         "Items": [
           "schemas.Metadata.items.items"
@@ -4789,6 +4859,14 @@
       "locations": {
         "ListGlobalPublicDelegatedPrefixesRequest": [
           "resources.globalPublicDelegatedPrefixes.list._request"
+        ]
+      }
+    },
+    {
+      "schema": "17de91fd",
+      "locations": {
+        "ListGlobalVmExtensionPoliciesRequest": [
+          "resources.globalVmExtensionPolicies.list._request"
         ]
       }
     },
@@ -5433,6 +5511,22 @@
       }
     },
     {
+      "schema": "58a752cb",
+      "locations": {
+        "ListRolloutPlansRequest": [
+          "resources.rolloutPlans.list._request"
+        ]
+      }
+    },
+    {
+      "schema": "2cddfb42",
+      "locations": {
+        "ListRolloutsRequest": [
+          "resources.rollouts.list._request"
+        ]
+      }
+    },
+    {
       "schema": "50fe57af",
       "locations": {
         "ListRoutePoliciesRoutersRequest": [
@@ -5689,7 +5783,7 @@
       }
     },
     {
-      "schema": "9608544a",
+      "schema": "ad2e4b0d",
       "locations": {
         "ManagedInstanceLastAttemptErrors": [
           "schemas.ManagedInstanceLastAttempt.errors"
@@ -6353,7 +6447,7 @@
       }
     },
     {
-      "schema": "35a9dad6",
+      "schema": "4ccfd199",
       "locations": {
         "QuotaStatusWarning": [
           "schemas.Region.quotaStatusWarning"
@@ -6361,7 +6455,7 @@
       }
     },
     {
-      "schema": "cbf5f383",
+      "schema": "e31bea46",
       "locations": {
         "RawDisk": [
           "schemas.Image.rawDisk"
@@ -8349,6 +8443,14 @@
       "locations": {
         "UpdateFutureReservationRequest": [
           "resources.futureReservations.update._request"
+        ]
+      }
+    },
+    {
+      "schema": "c22ba628",
+      "locations": {
+        "UpdateGlobalVmExtensionPolicyRequest": [
+          "resources.globalVmExtensionPolicies.update._request"
         ]
       }
     },
