@@ -146,6 +146,8 @@ proto_library(
         "publisher_model.proto",
         "reasoning_engine.proto",
         "reasoning_engine_execution_service.proto",
+        "reasoning_engine_runtime_revision.proto",
+        "reasoning_engine_runtime_revision_service.proto",
         "reasoning_engine_service.proto",
         "reservation_affinity.proto",
         "saved_query.proto",

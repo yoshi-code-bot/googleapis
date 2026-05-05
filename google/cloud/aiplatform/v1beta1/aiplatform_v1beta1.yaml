@@ -34,6 +34,7 @@ apis:
 - name: google.cloud.aiplatform.v1beta1.PipelineService
 - name: google.cloud.aiplatform.v1beta1.PredictionService
 - name: google.cloud.aiplatform.v1beta1.ReasoningEngineExecutionService
+- name: google.cloud.aiplatform.v1beta1.ReasoningEngineRuntimeRevisionService
 - name: google.cloud.aiplatform.v1beta1.ReasoningEngineService
 - name: google.cloud.aiplatform.v1beta1.ScheduleService
 - name: google.cloud.aiplatform.v1beta1.SessionService
@@ -87,6 +88,7 @@ types:
 - name: google.cloud.aiplatform.v1beta1.DeleteMetadataStoreOperationMetadata
 - name: google.cloud.aiplatform.v1beta1.DeleteOnlineEvaluatorOperationMetadata
 - name: google.cloud.aiplatform.v1beta1.DeleteOperationMetadata
+- name: google.cloud.aiplatform.v1beta1.DeleteReasoningEngineRuntimeRevisionOperationMetadata
 - name: google.cloud.aiplatform.v1beta1.DeployIndexOperationMetadata
 - name: google.cloud.aiplatform.v1beta1.DeployIndexResponse
 - name: google.cloud.aiplatform.v1beta1.DeployModelOperationMetadata
@@ -365,6 +367,7 @@ http:
     - post: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*/operations/*}:cancel'
     - post: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*/memories/*/operations/*}:cancel'
     - post: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*/sessions/*/operations/*}:cancel'
+    - post: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*/runtimeRevisions/*/operations/*}:cancel'
     - post: '/v1beta1/{name=projects/*/locations/*/schedules/*/operations/*}:cancel'
     - post: '/v1beta1/{name=projects/*/locations/*/specialistPools/*/operations/*}:cancel'
     - post: '/v1beta1/{name=projects/*/locations/*/tensorboards/*/operations/*}:cancel'
@@ -467,6 +470,7 @@ http:
     - delete: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*/operations/*}'
     - delete: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*/memories/*/operations/*}'
     - delete: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*/sessions/*/operations/*}'
+    - delete: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*/runtimeRevisions/*/operations/*}'
     - delete: '/v1beta1/{name=projects/*/locations/*/solvers/*/operations/*}'
     - delete: '/v1beta1/{name=projects/*/locations/*/studies/*/operations/*}'
     - delete: '/v1beta1/{name=projects/*/locations/*/studies/*/trials/*/operations/*}'
@@ -581,6 +585,7 @@ http:
     - get: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*/operations/*}'
     - get: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*/memories/*/operations/*}'
     - get: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*/sessions/*/operations/*}'
+    - get: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*/runtimeRevisions/*/operations/*}'
     - get: '/v1beta1/{name=projects/*/locations/*/solvers/*/operations/*}'
     - get: '/v1beta1/{name=projects/*/locations/*/studies/*/operations/*}'
     - get: '/v1beta1/{name=projects/*/locations/*/studies/*/trials/*/operations/*}'
@@ -694,6 +699,7 @@ http:
     - get: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*}/operations'
     - get: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*/memories/*}/operations'
     - get: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*/sessions/*}/operations'
+    - get: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*/runtimeRevisions/*}/operations'
     - get: '/v1beta1/{name=projects/*/locations/*/solvers/*}/operations'
     - get: '/v1beta1/{name=projects/*/locations/*/studies/*}/operations'
     - get: '/v1beta1/{name=projects/*/locations/*/studies/*/trials/*}/operations'
@@ -807,6 +813,7 @@ http:
     - post: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*/operations/*}:wait'
     - post: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*/memories/*/operations/*}:wait'
     - post: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*/sessions/*/operations/*}:wait'
+    - post: '/v1beta1/{name=projects/*/locations/*/reasoningEngines/*/runtimeRevisions/*/operations/*}:wait'
     - post: '/v1beta1/{name=projects/*/locations/*/studies/*/operations/*}:wait'
     - post: '/v1beta1/{name=projects/*/locations/*/studies/*/trials/*/operations/*}:wait'
     - post: '/v1beta1/{name=projects/*/locations/*/trainingPipelines/*/operations/*}:wait'
@@ -969,6 +976,10 @@ authentication:
       canonical_scopes: |-
         https://www.googleapis.com/auth/cloud-platform
   - selector: google.cloud.aiplatform.v1beta1.ReasoningEngineExecutionService.StreamQueryReasoningEngine
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/cloud-platform
+  - selector: 'google.cloud.aiplatform.v1beta1.ReasoningEngineRuntimeRevisionService.*'
     oauth:
       canonical_scopes: |-
         https://www.googleapis.com/auth/cloud-platform
