@@ -32,7 +32,7 @@ proto_library(
         "ad_unit_enums.proto",
         "ad_unit_messages.proto",
         "ad_unit_service.proto",
-        "admanager_error.proto",
+        "application_enums.proto",
         "application_messages.proto",
         "application_service.proto",
         "applied_label.proto",
@@ -44,6 +44,7 @@ proto_library(
         "browser_language_service.proto",
         "browser_messages.proto",
         "browser_service.proto",
+        "child_publisher_messages.proto",
         "cms_metadata_key_enums.proto",
         "cms_metadata_key_messages.proto",
         "cms_metadata_key_service.proto",
@@ -93,11 +94,19 @@ proto_library(
         "geo_target_service.proto",
         "goal.proto",
         "goal_enums.proto",
+        "label_enums.proto",
         "label_messages.proto",
+        "label_service.proto",
         "line_item_enums.proto",
         "line_item_messages.proto",
         "line_item_service.proto",
+        "linked_device_enums.proto",
+        "linked_device_messages.proto",
+        "linked_device_service.proto",
         "live_stream_event_messages.proto",
+        "mcm_earnings_messages.proto",
+        "mcm_earnings_service.proto",
+        "mcm_enums.proto",
         "mobile_carrier_messages.proto",
         "mobile_carrier_service.proto",
         "mobile_device_messages.proto",
@@ -128,6 +137,9 @@ proto_library(
         "report_service.proto",
         "report_value.proto",
         "request_platform_enum.proto",
+        "rich_media_ads_company_enums.proto",
+        "rich_media_ads_company_messages.proto",
+        "rich_media_ads_company_service.proto",
         "role_enums.proto",
         "role_messages.proto",
         "role_service.proto",
@@ -162,7 +174,6 @@ proto_library(
         "//google/type:interval_proto",
         "//google/type:money_proto",
         "//google/type:timeofday_proto",
-        "@com_google_protobuf//:any_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:field_mask_proto",
@@ -194,6 +205,8 @@ java_proto_library(
     name = "admanager_java_proto",
     deps = [":admanager_proto"],
 )
+
+
 
 java_gapic_library(
     name = "admanager_java_gapic",
@@ -238,7 +251,10 @@ java_gapic_test(
         "com.google.ads.admanager.v1.DeviceManufacturerServiceClientTest",
         "com.google.ads.admanager.v1.EntitySignalsMappingServiceClientTest",
         "com.google.ads.admanager.v1.GeoTargetServiceClientTest",
+        "com.google.ads.admanager.v1.LabelServiceClientTest",
         "com.google.ads.admanager.v1.LineItemServiceClientTest",
+        "com.google.ads.admanager.v1.LinkedDeviceServiceClientTest",
+        "com.google.ads.admanager.v1.McmEarningsServiceClientTest",
         "com.google.ads.admanager.v1.MobileCarrierServiceClientTest",
         "com.google.ads.admanager.v1.MobileDeviceServiceClientTest",
         "com.google.ads.admanager.v1.MobileDeviceSubmodelServiceClientTest",
@@ -251,6 +267,7 @@ java_gapic_test(
         "com.google.ads.admanager.v1.PrivateAuctionServiceClientTest",
         "com.google.ads.admanager.v1.ProgrammaticBuyerServiceClientTest",
         "com.google.ads.admanager.v1.ReportServiceClientTest",
+        "com.google.ads.admanager.v1.RichMediaAdsCompanyServiceClientTest",
         "com.google.ads.admanager.v1.RoleServiceClientTest",
         "com.google.ads.admanager.v1.SiteServiceClientTest",
         "com.google.ads.admanager.v1.TaxonomyCategoryServiceClientTest",
@@ -263,13 +280,13 @@ java_gapic_test(
 # Open Source Packages
 java_gapic_assembly_gradle_pkg(
     name = "google-ads-admanager-v1-java",
-    include_samples = True,
     transport = "rest",
     deps = [
         ":admanager_java_gapic",
         ":admanager_java_proto",
         ":admanager_proto",
     ],
+    include_samples = True,
 )
 
 ##############################################################################
@@ -314,7 +331,6 @@ go_gapic_library(
         "//google/longrunning:longrunning_go_proto",
         "@com_google_cloud_go_longrunning//:go_default_library",
         "@com_google_cloud_go_longrunning//autogen:go_default_library",
-        "@io_bazel_rules_go//proto/wkt:any_go_proto",
         "@io_bazel_rules_go//proto/wkt:duration_go_proto",
     ],
 )
@@ -324,9 +340,9 @@ go_gapic_assembly_pkg(
     name = "gapi-ads-admanager-v1-go",
     deps = [
         ":admanager_go_gapic",
+        ":admanager_go_gapic_srcjar-test.srcjar",
         ":admanager_go_gapic_srcjar-metadata.srcjar",
         ":admanager_go_gapic_srcjar-snippets.srcjar",
-        ":admanager_go_gapic_srcjar-test.srcjar",
         ":admanager_go_proto",
     ],
 )
@@ -391,8 +407,8 @@ php_gapic_library(
     name = "admanager_php_gapic",
     srcs = [":admanager_proto_with_info"],
     grpc_service_config = "admanager_grpc_service_config.json",
-    migration_mode = "NEW_SURFACE_ONLY",
     rest_numeric_enums = True,
+    migration_mode = "NEW_SURFACE_ONLY",
     service_yaml = "admanager_v1.yaml",
     transport = "rest",
     deps = [
@@ -446,8 +462,8 @@ nodejs_gapic_assembly_pkg(
 # buildifier: disable=same-origin-load
 load(
     "@com_google_googleapis_imports//:imports.bzl",
-    "ruby_cloud_gapic_library",
     "ruby_gapic_assembly_pkg",
+    "ruby_cloud_gapic_library",
     "ruby_grpc_library",
     "ruby_proto_library",
 )
@@ -466,7 +482,9 @@ ruby_grpc_library(
 ruby_cloud_gapic_library(
     name = "admanager_ruby_gapic",
     srcs = [":admanager_proto_with_info"],
-    extra_protoc_parameters = ["ruby-cloud-gem-name=google-ads-ad_manager-v1"],
+    extra_protoc_parameters = [
+        "ruby-cloud-gem-name=google-ads-ad_manager-v1",
+    ],
     grpc_service_config = "admanager_grpc_service_config.json",
     rest_numeric_enums = True,
     service_yaml = "admanager_v1.yaml",
@@ -501,6 +519,7 @@ load(
 
 csharp_proto_library(
     name = "admanager_csharp_proto",
+    extra_opts = [],
     deps = [":admanager_proto"],
 )
 

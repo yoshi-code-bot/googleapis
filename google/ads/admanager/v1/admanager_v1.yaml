@@ -28,7 +28,10 @@ apis:
 - name: google.ads.admanager.v1.DeviceManufacturerService
 - name: google.ads.admanager.v1.EntitySignalsMappingService
 - name: google.ads.admanager.v1.GeoTargetService
+- name: google.ads.admanager.v1.LabelService
 - name: google.ads.admanager.v1.LineItemService
+- name: google.ads.admanager.v1.LinkedDeviceService
+- name: google.ads.admanager.v1.McmEarningsService
 - name: google.ads.admanager.v1.MobileCarrierService
 - name: google.ads.admanager.v1.MobileDeviceService
 - name: google.ads.admanager.v1.MobileDeviceSubmodelService
@@ -41,6 +44,7 @@ apis:
 - name: google.ads.admanager.v1.PrivateAuctionService
 - name: google.ads.admanager.v1.ProgrammaticBuyerService
 - name: google.ads.admanager.v1.ReportService
+- name: google.ads.admanager.v1.RichMediaAdsCompanyService
 - name: google.ads.admanager.v1.RoleService
 - name: google.ads.admanager.v1.SiteService
 - name: google.ads.admanager.v1.TaxonomyCategoryService
@@ -51,6 +55,7 @@ apis:
 types:
 - name: google.ads.admanager.v1.BatchAdReviewCenterAdsOperationMetadata
 - name: google.ads.admanager.v1.BatchAllowAdReviewCenterAdsResponse
+- name: google.ads.admanager.v1.ChildPublisher
 - name: google.ads.admanager.v1.Label
 - name: google.ads.admanager.v1.LiveStreamEvent
 - name: google.ads.admanager.v1.Report
@@ -66,6 +71,8 @@ documentation:
 
 http:
   rules:
+  - selector: google.longrunning.Operations.CancelOperation
+    post: '/v1/{name=networks/*/operations/reports/runs/*}:cancel'
   - selector: google.longrunning.Operations.GetOperation
     get: '/v1/{name=networks/*/operations/reports/runs/*}'
 
@@ -75,286 +82,543 @@ authentication:
     oauth:
       canonical_scopes: |-
         https://www.googleapis.com/auth/admanager
-  - selector: 'google.ads.admanager.v1.AdReviewCenterAdService.*'
+  - selector: google.ads.admanager.v1.AdBreakService.GetAdBreak
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.AdBreakService.ListAdBreaks
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.AdReviewCenterAdService.BatchAllowAdReviewCenterAds
     oauth:
       canonical_scopes: |-
         https://www.googleapis.com/auth/admanager
+  - selector: google.ads.admanager.v1.AdReviewCenterAdService.BatchBlockAdReviewCenterAds
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager
+  - selector: google.ads.admanager.v1.AdReviewCenterAdService.SearchAdReviewCenterAds
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: 'google.ads.admanager.v1.AdUnitService.*'
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager
+  - selector: google.ads.admanager.v1.AdUnitService.GetAdUnit
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.AdUnitService.ListAdUnits
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: 'google.ads.admanager.v1.ApplicationService.*'
     oauth:
       canonical_scopes: |-
         https://www.googleapis.com/auth/admanager
   - selector: google.ads.admanager.v1.ApplicationService.GetApplication
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.ApplicationService.ListApplications
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.AudienceSegmentService.GetAudienceSegment
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.AudienceSegmentService.ListAudienceSegments
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.BandwidthGroupService.GetBandwidthGroup
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.BandwidthGroupService.ListBandwidthGroups
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.BrowserLanguageService.GetBrowserLanguage
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.BrowserLanguageService.ListBrowserLanguages
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.BrowserService.GetBrowser
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.BrowserService.ListBrowsers
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.CmsMetadataKeyService.BatchActivateCmsMetadataKeys
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager
+  - selector: google.ads.admanager.v1.CmsMetadataKeyService.BatchDeactivateCmsMetadataKeys
     oauth:
       canonical_scopes: |-
         https://www.googleapis.com/auth/admanager
   - selector: google.ads.admanager.v1.CmsMetadataKeyService.GetCmsMetadataKey
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.CmsMetadataKeyService.ListCmsMetadataKeys
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.CmsMetadataValueService.BatchActivateCmsMetadataValues
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager
+  - selector: google.ads.admanager.v1.CmsMetadataValueService.BatchDeactivateCmsMetadataValues
     oauth:
       canonical_scopes: |-
         https://www.googleapis.com/auth/admanager
   - selector: google.ads.admanager.v1.CmsMetadataValueService.GetCmsMetadataValue
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.CmsMetadataValueService.ListCmsMetadataValues
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.CompanyService.GetCompany
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.CompanyService.ListCompanies
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: 'google.ads.admanager.v1.ContactService.*'
     oauth:
       canonical_scopes: |-
         https://www.googleapis.com/auth/admanager
+  - selector: google.ads.admanager.v1.ContactService.GetContact
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.ContactService.ListContacts
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.ContentBundleService.GetContentBundle
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.ContentBundleService.ListContentBundles
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.ContentLabelService.GetContentLabel
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.ContentLabelService.ListContentLabels
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.ContentService.GetContent
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.ContentService.ListContent
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.CreativeTemplateService.GetCreativeTemplate
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.CreativeTemplateService.ListCreativeTemplates
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: 'google.ads.admanager.v1.CustomFieldService.*'
     oauth:
       canonical_scopes: |-
         https://www.googleapis.com/auth/admanager
+  - selector: google.ads.admanager.v1.CustomFieldService.GetCustomField
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.CustomFieldService.ListCustomFields
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: 'google.ads.admanager.v1.CustomTargetingKeyService.*'
     oauth:
       canonical_scopes: |-
         https://www.googleapis.com/auth/admanager
+  - selector: google.ads.admanager.v1.CustomTargetingKeyService.GetCustomTargetingKey
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.CustomTargetingKeyService.ListCustomTargetingKeys
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.CustomTargetingValueService.GetCustomTargetingValue
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.CustomTargetingValueService.ListCustomTargetingValues
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.DeviceCapabilityService.GetDeviceCapability
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.DeviceCapabilityService.ListDeviceCapabilities
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.DeviceCategoryService.GetDeviceCategory
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.DeviceCategoryService.ListDeviceCategories
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.DeviceManufacturerService.GetDeviceManufacturer
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.DeviceManufacturerService.ListDeviceManufacturers
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: 'google.ads.admanager.v1.EntitySignalsMappingService.*'
     oauth:
       canonical_scopes: |-
         https://www.googleapis.com/auth/admanager
+  - selector: google.ads.admanager.v1.EntitySignalsMappingService.GetEntitySignalsMapping
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.EntitySignalsMappingService.ListEntitySignalsMappings
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.GeoTargetService.GetGeoTarget
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.GeoTargetService.ListGeoTargets
     oauth:
       canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: 'google.ads.admanager.v1.LabelService.*'
+    oauth:
+      canonical_scopes: |-
         https://www.googleapis.com/auth/admanager
+  - selector: google.ads.admanager.v1.LabelService.GetLabel
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.LabelService.ListLabels
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.LineItemService.GetLineItem
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.LineItemService.ListLineItems
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.LinkedDeviceService.GetLinkedDevice
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.LinkedDeviceService.ListLinkedDevices
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.McmEarningsService.FetchMcmEarnings
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.MobileCarrierService.GetMobileCarrier
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.MobileCarrierService.ListMobileCarriers
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.MobileDeviceService.GetMobileDevice
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.MobileDeviceService.ListMobileDevices
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.MobileDeviceSubmodelService.GetMobileDeviceSubmodel
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.MobileDeviceSubmodelService.ListMobileDeviceSubmodels
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.NetworkService.GetNetwork
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.NetworkService.ListNetworks
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.OperatingSystemService.GetOperatingSystem
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.OperatingSystemService.ListOperatingSystems
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.OperatingSystemVersionService.GetOperatingSystemVersion
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.OperatingSystemVersionService.ListOperatingSystemVersions
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.OrderService.GetOrder
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.OrderService.ListOrders
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: 'google.ads.admanager.v1.PlacementService.*'
     oauth:
       canonical_scopes: |-
         https://www.googleapis.com/auth/admanager
-  - selector: 'google.ads.admanager.v1.PrivateAuctionDealService.*'
+  - selector: google.ads.admanager.v1.PlacementService.GetPlacement
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.PlacementService.ListPlacements
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.PrivateAuctionDealService.CreatePrivateAuctionDeal
     oauth:
       canonical_scopes: |-
         https://www.googleapis.com/auth/admanager
-  - selector: 'google.ads.admanager.v1.PrivateAuctionService.*'
+  - selector: google.ads.admanager.v1.PrivateAuctionDealService.GetPrivateAuctionDeal
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.PrivateAuctionDealService.ListPrivateAuctionDeals
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.PrivateAuctionDealService.UpdatePrivateAuctionDeal
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager
+  - selector: google.ads.admanager.v1.PrivateAuctionService.CreatePrivateAuction
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager
+  - selector: google.ads.admanager.v1.PrivateAuctionService.GetPrivateAuction
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.PrivateAuctionService.ListPrivateAuctions
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.PrivateAuctionService.UpdatePrivateAuction
     oauth:
       canonical_scopes: |-
         https://www.googleapis.com/auth/admanager
   - selector: google.ads.admanager.v1.ProgrammaticBuyerService.GetProgrammaticBuyer
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.ProgrammaticBuyerService.ListProgrammaticBuyers
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: 'google.ads.admanager.v1.ReportService.*'
     oauth:
       canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.ReportService.CreateReport
+    oauth:
+      canonical_scopes: |-
         https://www.googleapis.com/auth/admanager
+  - selector: google.ads.admanager.v1.ReportService.UpdateReport
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager
+  - selector: google.ads.admanager.v1.RichMediaAdsCompanyService.GetRichMediaAdsCompany
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.RichMediaAdsCompanyService.ListRichMediaAdsCompanies
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.RoleService.GetRole
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.RoleService.ListRoles
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: 'google.ads.admanager.v1.SiteService.*'
     oauth:
       canonical_scopes: |-
         https://www.googleapis.com/auth/admanager
+  - selector: google.ads.admanager.v1.SiteService.GetSite
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.SiteService.ListSites
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.TaxonomyCategoryService.GetTaxonomyCategory
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.TaxonomyCategoryService.ListTaxonomyCategories
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: 'google.ads.admanager.v1.TeamService.*'
     oauth:
       canonical_scopes: |-
         https://www.googleapis.com/auth/admanager
+  - selector: google.ads.admanager.v1.TeamService.GetTeam
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
+  - selector: google.ads.admanager.v1.TeamService.ListTeams
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: google.ads.admanager.v1.UserService.GetUser
     oauth:
       canonical_scopes: |-
-        https://www.googleapis.com/auth/admanager
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
   - selector: 'google.longrunning.Operations.*'
     oauth:
       canonical_scopes: |-
         https://www.googleapis.com/auth/admanager
+  - selector: google.longrunning.Operations.GetOperation
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/admanager,
+        https://www.googleapis.com/auth/admanager.readonly
 
 publishing:
   new_issue_uri: https://issuetracker.google.com/issues/new?component=1265187&template=1787490
