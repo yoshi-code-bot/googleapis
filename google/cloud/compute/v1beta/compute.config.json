@@ -1,17 +1,18 @@
 {
   "converterVersion": "",
-  "updateTime": "2026-05-14T09:18:46Z",
+  "updateTime": "2026-07-02T01:22:33Z",
   "apiVersion": "v1beta",
-  "discoveryRevision": "20260427",
+  "discoveryRevision": "20260625",
   "inlineSchemas": [
     {
-      "schema": "694239bb",
+      "schema": "1a52f126",
       "locations": {
         "Data": [
           "schemas.AutoscalerList.warning.data.data",
           "schemas.RolloutPlansListResponse.warning.data.data",
           "schemas.SubnetworkAggregatedList.warning.data.data",
           "schemas.MachineTypeList.warning.data.data",
+          "schemas.HostsListResponse.warning.data.data",
           "schemas.AcceleratorTypesScopedList.warning.data.data",
           "schemas.DiskTypesScopedList.warning.data.data",
           "schemas.VmExtensionPolicyAggregatedListResponse.warning.data.data",
@@ -97,6 +98,7 @@
           "schemas.RegionInstanceGroupManagersListInstanceConfigsResp.warning.data.data",
           "schemas.InstanceGroupManagerList.warning.data.data",
           "schemas.InstanceGroupManagersScopedList.warning.data.data",
+          "schemas.OrganizationRolloutsListResponse.warning.data.data",
           "schemas.NetworkEdgeSecurityServiceAggregatedList.warning.data.data",
           "schemas.BackendBucketsScopedList.warning.data.data",
           "schemas.InterconnectLocationList.warning.data.data",
@@ -237,7 +239,7 @@
       }
     },
     {
-      "schema": "fdf5dc57",
+      "schema": "af0693c2",
       "locations": {
         "Warning": [
           "schemas.StoragePoolsScopedList.warning",
@@ -304,6 +306,7 @@
           "schemas.RegionInstanceGroupManagerList.warning",
           "schemas.AutoscalerList.warning",
           "schemas.AddressList.warning",
+          "schemas.HostsListResponse.warning",
           "schemas.FutureReservationsListResponse.warning",
           "schemas.InstanceGroupManagersListPerInstanceConfigsResp.warning",
           "schemas.PublicDelegatedPrefixList.warning",
@@ -420,6 +423,7 @@
           "schemas.PreviewFeatureList.warning",
           "schemas.VpnTunnelsScopedList.warning",
           "schemas.ImageList.warning",
+          "schemas.OrganizationRolloutsListResponse.warning",
           "schemas.TargetHttpProxyAggregatedList.warning",
           "schemas.TargetTcpProxiesScopedList.warning",
           "schemas.AcceleratorTypeAggregatedList.warning",
@@ -465,7 +469,7 @@
       }
     },
     {
-      "schema": "b234bd64",
+      "schema": "634574cf",
       "locations": {
         "ErrorDetails": [
           "schemas.MultiMigStatusAcceleratorTopologyAcceleratorTopologyStateLastCheck.error.errors.errors.errorDetails.errorDetails",
@@ -480,7 +484,7 @@
       }
     },
     {
-      "schema": "e1c4fa4d",
+      "schema": "92d5b1b8",
       "locations": {
         "Errors": [
           "schemas.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error.errors.errors",
@@ -495,7 +499,7 @@
       }
     },
     {
-      "schema": "91508bb8",
+      "schema": "42614323",
       "locations": {
         "Error": [
           "schemas.InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails.error",
@@ -509,7 +513,7 @@
       }
     },
     {
-      "schema": "bf788f3c",
+      "schema": "708946a7",
       "locations": {
         "Warnings": [
           "schemas.Operation.warnings.warnings",
@@ -535,7 +539,7 @@
       }
     },
     {
-      "schema": "d8b04a96",
+      "schema": "89c10201",
       "locations": {
         "Accelerators": [
           "schemas.MachineType.accelerators.accelerators"
@@ -755,6 +759,22 @@
       "locations": {
         "AdoptInstancesRegionInstanceGroupManagerRequest": [
           "resources.regionInstanceGroupManagers.adoptInstances._request"
+        ]
+      }
+    },
+    {
+      "schema": "1293afaf",
+      "locations": {
+        "AdvanceOrganizationRolloutRequest": [
+          "resources.organizationRollouts.advance._request"
+        ]
+      }
+    },
+    {
+      "schema": "2d0acedc",
+      "locations": {
+        "AdvanceRolloutRequest": [
+          "resources.rollouts.advance._request"
         ]
       }
     },
@@ -1199,7 +1219,7 @@
       }
     },
     {
-      "schema": "6ea4429e",
+      "schema": "1fb4fa09",
       "locations": {
         "Allowed": [
           "schemas.Firewall.allowed.allowed"
@@ -1331,6 +1351,14 @@
       "locations": {
         "CancelInstanceGroupManagerResizeRequestRequest": [
           "resources.instanceGroupManagerResizeRequests.cancel._request"
+        ]
+      }
+    },
+    {
+      "schema": "d7ae00ab",
+      "locations": {
+        "CancelOrganizationRolloutRequest": [
+          "resources.organizationRollouts.cancel._request"
         ]
       }
     },
@@ -1835,6 +1863,22 @@
       "locations": {
         "DeleteNodesNodeGroupRequest": [
           "resources.nodeGroups.deleteNodes._request"
+        ]
+      }
+    },
+    {
+      "schema": "9d8c2a5",
+      "locations": {
+        "DeleteOrganizationRolloutPlanRequest": [
+          "resources.organizationRolloutPlans.delete._request"
+        ]
+      }
+    },
+    {
+      "schema": "d99a57dc",
+      "locations": {
+        "DeleteOrganizationRolloutRequest": [
+          "resources.organizationRollouts.delete._request"
         ]
       }
     },
@@ -2375,7 +2419,7 @@
       }
     },
     {
-      "schema": "3ebe414b",
+      "schema": "efcef8b6",
       "locations": {
         "Denied": [
           "schemas.Firewall.denied.denied"
@@ -2783,6 +2827,14 @@
       }
     },
     {
+      "schema": "4cba904b",
+      "locations": {
+        "GetHostRequest": [
+          "resources.hosts.get._request"
+        ]
+      }
+    },
+    {
       "schema": "f1e33942",
       "locations": {
         "GetIamPolicyBackendBucketRequest": [
@@ -3071,6 +3123,14 @@
       }
     },
     {
+      "schema": "5f22a5e1",
+      "locations": {
+        "GetImageViewRequest": [
+          "resources.imageViews.get._request"
+        ]
+      }
+    },
+    {
       "schema": "faba0b70",
       "locations": {
         "GetInstanceGroupManagerRequest": [
@@ -3335,6 +3395,22 @@
       }
     },
     {
+      "schema": "690475a",
+      "locations": {
+        "GetOrganizationRolloutPlanRequest": [
+          "resources.organizationRolloutPlans.get._request"
+        ]
+      }
+    },
+    {
+      "schema": "54969583",
+      "locations": {
+        "GetOrganizationRolloutRequest": [
+          "resources.organizationRollouts.get._request"
+        ]
+      }
+    },
+    {
       "schema": "1b750c51",
       "locations": {
         "GetOrganizationSecurityPolicyRequest": [
@@ -3387,6 +3463,14 @@
       "locations": {
         "GetProjectRequest": [
           "resources.projects.get._request"
+        ]
+      }
+    },
+    {
+      "schema": "93efd023",
+      "locations": {
+        "GetProjectViewRequest": [
+          "resources.projectViews.get._request"
         ]
       }
     },
@@ -4023,6 +4107,14 @@
       }
     },
     {
+      "schema": "71935e0b",
+      "locations": {
+        "GetVersionHostRequest": [
+          "resources.hosts.getVersion._request"
+        ]
+      }
+    },
+    {
       "schema": "cbecf33f",
       "locations": {
         "GetVersionReservationSlotRequest": [
@@ -4403,6 +4495,14 @@
       "locations": {
         "InsertNodeTemplateRequest": [
           "resources.nodeTemplates.insert._request"
+        ]
+      }
+    },
+    {
+      "schema": "12e2ffb3",
+      "locations": {
+        "InsertOrganizationRolloutPlanRequest": [
+          "resources.organizationRolloutPlans.insert._request"
         ]
       }
     },
@@ -4887,7 +4987,7 @@
       }
     },
     {
-      "schema": "f0861ce5",
+      "schema": "a196d450",
       "locations": {
         "Items": [
           "schemas.Metadata.items.items"
@@ -5123,6 +5223,14 @@
       "locations": {
         "ListHealthChecksRequest": [
           "resources.healthChecks.list._request"
+        ]
+      }
+    },
+    {
+      "schema": "a3596187",
+      "locations": {
+        "ListHostsRequest": [
+          "resources.hosts.list._request"
         ]
       }
     },
@@ -5395,6 +5503,22 @@
       "locations": {
         "ListNodesNodeGroupsRequest": [
           "resources.nodeGroups.listNodes._request"
+        ]
+      }
+    },
+    {
+      "schema": "243a8c58",
+      "locations": {
+        "ListOrganizationRolloutPlansRequest": [
+          "resources.organizationRolloutPlans.list._request"
+        ]
+      }
+    },
+    {
+      "schema": "96fe034f",
+      "locations": {
+        "ListOrganizationRolloutsRequest": [
+          "resources.organizationRollouts.list._request"
         ]
       }
     },
@@ -6079,7 +6203,7 @@
       }
     },
     {
-      "schema": "56d9a8f5",
+      "schema": "7ea6060",
       "locations": {
         "ManagedInstanceLastAttemptErrors": [
           "schemas.ManagedInstanceLastAttempt.errors"
@@ -6703,6 +6827,22 @@
       }
     },
     {
+      "schema": "a1b6bca3",
+      "locations": {
+        "PauseOrganizationRolloutRequest": [
+          "resources.organizationRollouts.pause._request"
+        ]
+      }
+    },
+    {
+      "schema": "c7d5c310",
+      "locations": {
+        "PauseRolloutRequest": [
+          "resources.rollouts.pause._request"
+        ]
+      }
+    },
+    {
       "schema": "bfbcab48",
       "locations": {
         "PerformMaintenanceInstanceRequest": [
@@ -6751,7 +6891,7 @@
       }
     },
     {
-      "schema": "f67b2f81",
+      "schema": "a78be6ec",
       "locations": {
         "QuotaStatusWarning": [
           "schemas.Region.quotaStatusWarning"
@@ -6759,7 +6899,7 @@
       }
     },
     {
-      "schema": "8cc7482e",
+      "schema": "3dd7ff99",
       "locations": {
         "RawDisk": [
           "schemas.Image.rawDisk"
@@ -7059,6 +7199,22 @@
       "locations": {
         "ResumeInstancesRegionInstanceGroupManagerRequest": [
           "resources.regionInstanceGroupManagers.resumeInstances._request"
+        ]
+      }
+    },
+    {
+      "schema": "f1819a5e",
+      "locations": {
+        "ResumeOrganizationRolloutRequest": [
+          "resources.organizationRollouts.resume._request"
+        ]
+      }
+    },
+    {
+      "schema": "8f436191",
+      "locations": {
+        "ResumeRolloutRequest": [
+          "resources.rollouts.resume._request"
         ]
       }
     },
